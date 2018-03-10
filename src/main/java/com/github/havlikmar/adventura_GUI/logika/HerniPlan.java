@@ -2,6 +2,13 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package com.github.havlikmar.adventura_GUI.logika;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.github.havlikmar.adventura_GUI.ui.Observable;
+import com.github.havlikmar.adventura_GUI.ui.Observer;
+
+
 /**
  * Class HerniPlan - třída představující mapu a stav adventury.
  * 
@@ -12,9 +19,10 @@ package com.github.havlikmar.adventura_GUI.logika;
  * @author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Riha, upravil Martin Havlík
  * @version    LS 2016/2017 (upraveno 17.5.2017)
  */
-public class HerniPlan {
+public class HerniPlan implements Observable{
     private Batoh batoh;
     private Lokace aktualniLokace;
+    private List<Observer> posluchaci;
     
     // Slouží pro zaznamenání klíčových událostí na konec hry
     private static boolean zavalenyVchod = false;
@@ -32,6 +40,7 @@ public class HerniPlan {
     public HerniPlan() {
         zalozLokaceHry();
         batoh = new Batoh();  
+        posluchaci = new ArrayList<Observer>();
     }
 
     /**
@@ -152,6 +161,7 @@ public class HerniPlan {
      */
     public void setAktualniLokace(Lokace lokace) {
         aktualniLokace = lokace;
+        this.oznamPosluchaci();
     }
     
     /**
@@ -286,4 +296,16 @@ public class HerniPlan {
     public static void setVerzeKonce(int newVerzeKonce) {
         verzeKonce = newVerzeKonce;
     }
+    
+    public void pridejPosluchace(Observer observer) {
+    	posluchaci.add(observer);
+    }
+	public void odeberPosluchace(Observer observer){
+		posluchaci.remove(observer);
+	}
+	public void oznamPosluchaci(){
+		for(Observer observer: posluchaci) {
+			observer.uprav(aktualniLokace);
+		}
+	}
 }
