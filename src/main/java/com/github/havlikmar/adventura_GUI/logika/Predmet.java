@@ -1,12 +1,18 @@
 package com.github.havlikmar.adventura_GUI.logika;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.github.havlikmar.adventura_GUI.ui.Observable;
+import com.github.havlikmar.adventura_GUI.ui.Observer;
+
 /**
  * Třída Predmet představuje záznam předmětů ve hře.
  * 
  * @author     Martin Havlík
  * @version    9.5.2017
  */
-public class Predmet {
+public class Predmet implements Observable{
     private String nazev;
     private String popis;
     private boolean prenositelny;
@@ -16,6 +22,8 @@ public class Predmet {
     private String coZiskam;
     private String textPouzijPoprve;
     private String textPouzijOpakovane;
+    private List<Observer> posluchaci;
+    private HerniPlan herniPlan;
     
     /**
      * Konstruktor pro vytvoření jednotlivých předmětů.
@@ -25,11 +33,13 @@ public class Predmet {
      * @param   prenositelny    informace zda předmět jde přenést
      * @param   viditelny   informace o viditelnosti předmětu
      */
-    public Predmet(String nazev, String popis, boolean prenositelny, boolean viditelny) {
+    public Predmet(String nazev, String popis, boolean prenositelny, boolean viditelny, HerniPlan herniPlan) {
         this.nazev = nazev;
         this.popis = popis;
         this.prenositelny = prenositelny;
         this.viditelny = viditelny;
+        posluchaci = new ArrayList<Observer>();
+        this.herniPlan = herniPlan;
     }
     
     /**
@@ -44,7 +54,7 @@ public class Predmet {
      * @param   textPouzijPoprve    text který se vypíše, když poprvé použiju předmět
      * @param   textPouzijOpakovane text který se vypíše, když opakovaně použiju předmět
      */
-    public Predmet(String nazev, String popis, boolean prenositelny, boolean viditelny, String kdeLzePouzit, String coZiskam, String textPouzijPoprve, String textPouzijOpakovane) {
+    public Predmet(String nazev, String popis, boolean prenositelny, boolean viditelny, String kdeLzePouzit, String coZiskam, String textPouzijPoprve, String textPouzijOpakovane, HerniPlan herniPlan) {
         this.nazev = nazev;
         this.popis = popis;
         this.prenositelny = prenositelny;
@@ -53,6 +63,8 @@ public class Predmet {
         this.coZiskam = coZiskam;
         this.textPouzijPoprve = textPouzijPoprve;
         this.textPouzijOpakovane = textPouzijOpakovane;
+        posluchaci = new ArrayList<Observer>();
+        this.herniPlan = herniPlan;
     }
     
     /**
@@ -67,7 +79,7 @@ public class Predmet {
      * @param   textPouzijOpakovane text který se vypíše, když opakovaně použiju předmět
      * @param   zamcena informace zda předmět je zamčený
      */
-    public Predmet(String nazev, String popis, boolean prenositelny, String kdeLzePouzit, String coZiskam, String textPouzijPoprve, String textPouzijOpakovane, boolean zamcena) {
+    public Predmet(String nazev, String popis, boolean prenositelny, String kdeLzePouzit, String coZiskam, String textPouzijPoprve, String textPouzijOpakovane, boolean zamcena, HerniPlan herniPlan) {
         this.nazev = nazev;
         this.popis = popis;
         this.prenositelny = prenositelny;
@@ -76,6 +88,8 @@ public class Predmet {
         this.textPouzijOpakovane = textPouzijOpakovane;
         this.zamcena = zamcena;
         this.kdeLzePouzit = kdeLzePouzit;
+        posluchaci = new ArrayList<Observer>();
+        this.herniPlan = herniPlan;
     }
     
     /**
@@ -121,6 +135,7 @@ public class Predmet {
      */
     public void setViditelny(boolean viditelny) {
         this.viditelny = viditelny;
+        this.oznamPosluchaci();
     }
     
     /**
@@ -252,4 +267,16 @@ public class Predmet {
     public String toString() {
         return nazev;
     }
+    
+    public void pridejPosluchace(Observer observer) {
+    	posluchaci.add(observer);
+    }
+	public void odeberPosluchace(Observer observer){
+		posluchaci.remove(observer);
+	}
+	public void oznamPosluchaci(){
+		for(Observer observer: posluchaci) {
+			observer.uprav(herniPlan.getAktualniLokace());
+		}
+	}
 }

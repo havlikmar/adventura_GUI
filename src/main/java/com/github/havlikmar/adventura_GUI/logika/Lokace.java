@@ -2,6 +2,7 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package com.github.havlikmar.adventura_GUI.logika;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
@@ -10,6 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.stream.Collectors;
+
+import com.github.havlikmar.adventura_GUI.ui.Observable;
+import com.github.havlikmar.adventura_GUI.ui.Observer;
 
 /**
  * Trida Lokace - popisuje jednotlivé lokace (místnosti) hry
@@ -23,7 +27,7 @@ import java.util.stream.Collectors;
  * @author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Riha, upravil Martin Havlík
  * @version    LS 2016/2017, (upraveno 16.5.2017)
  */
-public class Lokace {
+public class Lokace implements Observable{
     private String nazev;
     private String popis;
     private boolean dosazitelny = true;
@@ -33,6 +37,7 @@ public class Lokace {
     private Map<String, Predmet> predmety;
     private Map<String, Postava> postavy;
     private Map<String, Bytost> bytosti;
+    private List<Observer> posluchaci;
 
     /**
      * Vytvoření lokace se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -50,6 +55,7 @@ public class Lokace {
         predmety = new HashMap<>();
         postavy = new HashMap<>();
         bytosti = new HashMap<>();
+        posluchaci = new ArrayList<Observer>();
     }
     
     /**
@@ -70,6 +76,7 @@ public class Lokace {
         predmety = new HashMap<>();
         postavy = new HashMap<>();
         bytosti = new HashMap<>();
+        posluchaci = new ArrayList<Observer>();
     }
 
     /**
@@ -276,7 +283,8 @@ public class Lokace {
      * @param   predmet predmět, který chci přidat
      */
     public void vlozPredmet(Predmet predmet) {
-        predmety.put(predmet.getNazev(), predmet);
+    	predmety.put(predmet.getNazev(), predmet);
+    	this.oznamPosluchaci();
     }
 
     /**
@@ -286,7 +294,9 @@ public class Lokace {
      * @return  předmět který odebírám
      */
     public Predmet vezmiPredmet(String nazevPredmetu) {
-        return predmety.remove(nazevPredmetu);
+    	Predmet pomoc = predmety.remove(nazevPredmetu);
+    	this.oznamPosluchaci();
+    	return pomoc;
     }
     
     /**
@@ -420,4 +430,20 @@ public class Lokace {
     public String getKlic() {
         return klic;
     }
+    
+    public Map<String, Predmet> getPredmety(){
+    	return predmety;
+    }
+ 
+    public void pridejPosluchace(Observer observer) {
+    	posluchaci.add(observer);
+    }
+	public void odeberPosluchace(Observer observer){
+		posluchaci.remove(observer);
+	}
+	public void oznamPosluchaci(){
+		for(Observer observer: posluchaci) {
+			observer.uprav(this);
+		}
+	}
 }

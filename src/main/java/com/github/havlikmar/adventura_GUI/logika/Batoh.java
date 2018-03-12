@@ -1,7 +1,13 @@
 package com.github.havlikmar.adventura_GUI.logika;
 
 import java.util.Map;
+
+import com.github.havlikmar.adventura_GUI.ui.Observable;
+import com.github.havlikmar.adventura_GUI.ui.Observer;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Třída Batoh představuje batoh pro uchovávání věcí hráče
@@ -9,15 +15,19 @@ import java.util.HashMap;
  * @author     Martin Havlík
  * @version    6.5.2017
  */
-public class Batoh {
+public class Batoh implements Observable{
     private Map<String, Predmet> veciVBatohu;   
     private static final int MAX_POCET = 4;
+    private List<Observer> posluchaci;
+    private HerniPlan herniPlan;
 
     /**
      * Konstruktor pro vytvoření obsahu batohu
      */
-    public Batoh() {
+    public Batoh(HerniPlan herniPlan) {
         veciVBatohu = new HashMap<>();
+        posluchaci = new ArrayList<Observer>();
+        this.herniPlan = herniPlan;
     }
 
     /**
@@ -27,6 +37,7 @@ public class Batoh {
      */
     public void vlozPredmet (Predmet predmet) {
         veciVBatohu.put(predmet.getNazev(), predmet);
+        this.oznamPosluchaci();
     }
 
     /**
@@ -71,7 +82,9 @@ public class Batoh {
      * @return  vrací předmět, který má být položen
      */
     public Predmet polozPredmet(String nazevPredmetu) {
-        return veciVBatohu.remove(nazevPredmetu);
+        Predmet pomoc = veciVBatohu.remove(nazevPredmetu);
+        this.oznamPosluchaci();
+        return pomoc;
     }
     
     /**
@@ -83,4 +96,20 @@ public class Batoh {
     public Predmet getPredmet(String nazevPredmetu) {
        return veciVBatohu.get(nazevPredmetu);
     }  
+    
+    public Map<String, Predmet> getPredmety(){
+    	return veciVBatohu;
+    }
+ 
+    public void pridejPosluchace(Observer observer) {
+    	posluchaci.add(observer);
+    }
+	public void odeberPosluchace(Observer observer){
+		posluchaci.remove(observer);
+	}
+	public void oznamPosluchaci(){
+		for(Observer observer: posluchaci) {
+			observer.uprav(herniPlan.getAktualniLokace());
+		}
+	}
 }

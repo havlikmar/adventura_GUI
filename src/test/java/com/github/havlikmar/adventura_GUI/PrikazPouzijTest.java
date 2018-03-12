@@ -49,11 +49,11 @@ public class PrikazPouzijTest {
      */
     @Test
     public void testLzePouzitVec() {
-        Predmet vec1 = new Predmet("vec1", "", true, true, LOKACE1, VEC3, POPRVE, PODRUHE); // v této lokaci jde použít
-        Predmet vec2 = new Predmet("vec2", "", true, true, LOKACE2, VEC3, POPRVE, PODRUHE); // v této lokaci nejde použít
-        Predmet vec3 = new Predmet(VEC3, "", true, false); // věc co dostanu
-        Predmet vec4 = new Predmet(KLADA, "", false, true, LOKACE1, LOKACE2, POPRVE, PODRUHE); // kontrola klády
-        Predmet vec5 = new Predmet("klíč", "", true, true); // klíč
+        Predmet vec1 = new Predmet("vec1", "", true, true, LOKACE1, VEC3, POPRVE, PODRUHE, hra1.getHerniPlan()); // v této lokaci jde použít
+        Predmet vec2 = new Predmet("vec2", "", true, true, LOKACE2, VEC3, POPRVE, PODRUHE, hra1.getHerniPlan()); // v této lokaci nejde použít
+        Predmet vec3 = new Predmet(VEC3, "", true, false, hra1.getHerniPlan()); // věc co dostanu
+        Predmet vec4 = new Predmet(KLADA, "", false, true, LOKACE1, LOKACE2, POPRVE, PODRUHE, hra1.getHerniPlan()); // kontrola klády
+        Predmet vec5 = new Predmet("klíč", "", true, true, hra1.getHerniPlan()); // klíč
         
         Lokace lokace1 = new Lokace(LOKACE1,"",true); // současná lokace
         Lokace lokace2 = new Lokace(LOKACE2,"",true);
@@ -113,8 +113,8 @@ public class PrikazPouzijTest {
      */
     @Test
     public void testLzePouzitOstatni() {
-        Predmet vec1 = new Predmet("vec1", "", true, true, LOKACE1, BYTOST, POPRVE, PODRUHE); // cílem je bytost
-        Predmet vec2 = new Predmet("vec2", "", true, true, LOKACE1, LOKACE3, POPRVE, PODRUHE); 
+        Predmet vec1 = new Predmet("vec1", "", true, true, LOKACE1, BYTOST, POPRVE, PODRUHE, hra1.getHerniPlan()); // cílem je bytost
+        Predmet vec2 = new Predmet("vec2", "", true, true, LOKACE1, LOKACE3, POPRVE, PODRUHE, hra1.getHerniPlan()); 
         
         Lokace lokace1 = new Lokace(LOKACE1, "", true);
         Lokace lokace2 = new Lokace(LOKACE2, "", true);

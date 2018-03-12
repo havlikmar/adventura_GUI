@@ -38,9 +38,9 @@ public class PrikazMluvTest {
      */
     @Test
     public void testLzeMluvit() {
-        Predmet vec1 = new Predmet("vec1", "popis1", true, true); 
-        Predmet vec2 = new Predmet("vec2", "popis2", true, true); 
-        Predmet vec3 = new Predmet("vec2", "popis2", true, true); 
+        Predmet vec1 = new Predmet("vec1", "popis1", true, true, hra1.getHerniPlan()); 
+        Predmet vec2 = new Predmet("vec2", "popis2", true, true, hra1.getHerniPlan()); 
+        Predmet vec3 = new Predmet("vec2", "popis2", true, true, hra1.getHerniPlan()); 
         
         Lokace lokace1 = new Lokace("lokace1","",true);
         Lokace lokace2 = new Lokace("lokace2","",true);

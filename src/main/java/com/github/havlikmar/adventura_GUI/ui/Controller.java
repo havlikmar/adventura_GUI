@@ -17,9 +17,15 @@ public class Controller extends GridPane implements Observer {
 	@FXML private TextArea  textVystup;
 	@FXML private ListView  seznamMistnosti;
 	@FXML private ComboBox  prikazyMistnost;
-		
+	@FXML private ListView  seznamPredmetu;
+	@FXML private ComboBox  prikazyPredmety;
+	@FXML private ListView  seznamInventare;
+	@FXML private ComboBox  prikazyInventar;
+	
 	private IHra hra;
 	private SeznamMistnosti dataMistnosti;
+	private VypisPredmetu dataPredmetu;
+	private VypisInventare dataInventar;
 	private HerniPlan plan;
 	
 	/**
@@ -38,6 +44,14 @@ public class Controller extends GridPane implements Observer {
 	@FXML public void klikMistnosti(MouseEvent arg0) {
 		vypis(hra.zpracujPrikaz(prikazyMistnost.getSelectionModel().getSelectedItem() + " " + seznamMistnosti.getSelectionModel().getSelectedItem()));
 	}
+	
+	@FXML public void klikPredmety(MouseEvent arg0) {
+		vypis(hra.zpracujPrikaz(prikazyPredmety.getSelectionModel().getSelectedItem() + " " + seznamPredmetu.getSelectionModel().getSelectedItem()));
+	}
+	
+	@FXML public void klikInventar(MouseEvent arg0) {
+		vypis(hra.zpracujPrikaz(prikazyInventar.getSelectionModel().getSelectedItem() + " " + seznamInventare.getSelectionModel().getSelectedItem()));
+	}
 
 	public void vypis(String text){
 		String odpoved = "\n" + "----------------------------------------------------" + "\n";
@@ -54,6 +68,16 @@ public class Controller extends GridPane implements Observer {
 		seznamMistnosti.setItems(dataMistnosti.getMistnosti());
 		prikazyMistnost.getItems().addAll("jdi", "odemkni");
 		prikazyMistnost.getSelectionModel().selectFirst();
+		
+		dataPredmetu = new VypisPredmetu(plan, this);
+		seznamPredmetu.setItems(dataPredmetu.getPredmety());
+		prikazyPredmety.getItems().addAll("vezmi", "použij", "odemkni");
+		prikazyPredmety.getSelectionModel().selectFirst();
+		
+		dataInventar = new VypisInventare(plan, this);
+		seznamInventare.setItems(dataInventar.getPredmety());
+		prikazyInventar.getItems().addAll("použij", "polož");
+		prikazyInventar.getSelectionModel().selectFirst();
 	}
 
 	@Override
