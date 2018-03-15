@@ -44,17 +44,17 @@ public class PrikazVezmiTest {
      */
     @Test
     public  void testLzeSebrat() {      
-        Predmet vec1 = new Predmet(VEC1, "", true, true, hra1.getHerniPlan());
-        Predmet vec2 = new Predmet(VEC2, "", true, false, hra1.getHerniPlan());
-        Predmet vec3 = new Predmet(VEC3, "", false, true, hra1.getHerniPlan());
-        Predmet vec4 = new Predmet(VEC4, "", false, false, hra1.getHerniPlan());
+        Predmet vec1 = new Predmet(VEC1, "", true, true);
+        Predmet vec2 = new Predmet(VEC2, "", true, false);
+        Predmet vec3 = new Predmet(VEC3, "", false, true);
+        Predmet vec4 = new Predmet(VEC4, "", false, false);
         
         Bytost bytost1 = new Bytost ("bytost1", "", true);
         Bytost bytost2 = new Bytost ("bytost2", "", false);
         
         Postava postava = new Postava("postava", vec1, vec2,"", "", "", "");
         
-        Lokace lokace1 = new Lokace("lokace1","",true);
+        Lokace lokace1 = new Lokace("lokace1","",true, 247.00, 308.00);
         
         lokace1.vlozPredmet(vec1);
         lokace1.vlozPredmet(vec2);
@@ -101,13 +101,13 @@ public class PrikazVezmiTest {
      */
     @Test
     public  void testLzeSebratOmezenyPocet() {      
-        Predmet vec1 = new Predmet(VEC1, "", true, true, hra1.getHerniPlan());
-        Predmet vec2 = new Predmet(VEC2, "", true, true, hra1.getHerniPlan());
-        Predmet vec3 = new Predmet(VEC3, "", true, true, hra1.getHerniPlan());
-        Predmet vec4 = new Predmet(VEC4, "", true, true, hra1.getHerniPlan());
-        Predmet vec5 = new Predmet(VEC5, "", true, true, hra1.getHerniPlan());
+        Predmet vec1 = new Predmet(VEC1, "", true, true);
+        Predmet vec2 = new Predmet(VEC2, "", true, true);
+        Predmet vec3 = new Predmet(VEC3, "", true, true);
+        Predmet vec4 = new Predmet(VEC4, "", true, true);
+        Predmet vec5 = new Predmet(VEC5, "", true, true);
       
-        Lokace lokace1 = new Lokace("lokace1","",true);
+        Lokace lokace1 = new Lokace("lokace1","",true, 247.00, 308.00);
         
         lokace1.vlozPredmet(vec1);
         lokace1.vlozPredmet(vec2);

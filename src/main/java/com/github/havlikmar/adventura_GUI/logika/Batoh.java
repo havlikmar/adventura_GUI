@@ -19,15 +19,13 @@ public class Batoh implements Observable{
     private Map<String, Predmet> veciVBatohu;   
     private static final int MAX_POCET = 4;
     private List<Observer> posluchaci;
-    private HerniPlan herniPlan;
-
+    
     /**
      * Konstruktor pro vytvoření obsahu batohu
      */
     public Batoh(HerniPlan herniPlan) {
         veciVBatohu = new HashMap<>();
         posluchaci = new ArrayList<Observer>();
-        this.herniPlan = herniPlan;
     }
 
     /**
@@ -37,7 +35,7 @@ public class Batoh implements Observable{
      */
     public void vlozPredmet (Predmet predmet) {
         veciVBatohu.put(predmet.getNazev(), predmet);
-        this.oznamPosluchaci();
+        oznamPosluchaci();
     }
 
     /**
@@ -83,7 +81,7 @@ public class Batoh implements Observable{
      */
     public Predmet polozPredmet(String nazevPredmetu) {
         Predmet pomoc = veciVBatohu.remove(nazevPredmetu);
-        this.oznamPosluchaci();
+        oznamPosluchaci();
         return pomoc;
     }
     
@@ -109,7 +107,7 @@ public class Batoh implements Observable{
 	}
 	public void oznamPosluchaci(){
 		for(Observer observer: posluchaci) {
-			observer.uprav(herniPlan.getAktualniLokace());
+			observer.uprav();
 		}
 	}
 }

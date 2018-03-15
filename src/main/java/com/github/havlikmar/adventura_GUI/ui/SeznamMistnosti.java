@@ -20,7 +20,10 @@ public class SeznamMistnosti implements Observer{
 		List<String> list = new ArrayList<String>();
 		observableList = FXCollections.observableList(list);
 		plan.pridejPosluchace(this);
-		uprav(plan.getAktualniLokace());
+		for (Lokace lokace : plan.getLokace()) {
+            lokace.pridejPosluchace(this);
+		}
+		uprav();
 	}
 		
 	public ObservableList getMistnosti() {
@@ -28,7 +31,7 @@ public class SeznamMistnosti implements Observer{
 	}
 			
 	@Override
-	public void uprav(Lokace lokace) {
+	public void uprav() {
 		observableList.removeAll(observableList);
 		for (Lokace mistnost : plan.getAktualniLokace().getVychody()) {
 			if (plan.getAktualniLokace().vratSousedniLokaci(mistnost.getNazev()).isDosazitelny()) {

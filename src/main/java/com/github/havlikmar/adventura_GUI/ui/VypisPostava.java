@@ -5,36 +5,26 @@ import java.util.List;
 
 import com.github.havlikmar.adventura_GUI.logika.HerniPlan;
 import com.github.havlikmar.adventura_GUI.logika.Lokace;
-import com.github.havlikmar.adventura_GUI.logika.Predmet;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class VypisPredmetu implements Observer{
+public class VypisPostava implements Observer{
 	private HerniPlan plan;
 	private ObservableList<String> observableList;
 	private Controller controller;
 	
-	public VypisPredmetu(HerniPlan plan, Controller controller) {
+	public VypisPostava(HerniPlan plan, Controller controller) {
 		this.plan = plan;
 		this.controller = controller;
 		List<String> list = new ArrayList<String>();
 		observableList = FXCollections.observableList(list);
-
-		plan.pridejPosluchace(this);
-		for (Lokace lokace : plan.getLokace()) {
-            lokace.pridejPosluchace(this);
-		}
 		
-		for (Lokace lokace : plan.getLokace()) {
-            for (Predmet predmet: lokace.getPredmety().values()){
-            predmet.pridejPosluchace(this);
-            }
-		}
+		plan.pridejPosluchace(this);
 		uprav();
 	}
 		
-	public ObservableList getPredmety() {
+	public ObservableList getPostavy() {
 		return observableList;
 	}
 	
@@ -42,10 +32,8 @@ public class VypisPredmetu implements Observer{
 	public void uprav() {
 		// TODO Auto-generated method stub
 		observableList.removeAll(observableList);		
-		for (String nazevPredmetu : plan.getAktualniLokace().getPredmety().keySet()) {
-            if (plan.getAktualniLokace().getPredmet(nazevPredmetu).isViditelny()) {
-            	observableList.add(nazevPredmetu);
-            }
+		for (String nazevPostavy : plan.getAktualniLokace().getPostavy().keySet()) {
+			observableList.add(nazevPostavy);            
 		}
 	}
 

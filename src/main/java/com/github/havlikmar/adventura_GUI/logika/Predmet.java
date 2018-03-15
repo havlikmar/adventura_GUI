@@ -23,7 +23,6 @@ public class Predmet implements Observable{
     private String textPouzijPoprve;
     private String textPouzijOpakovane;
     private List<Observer> posluchaci;
-    private HerniPlan herniPlan;
     
     /**
      * Konstruktor pro vytvoření jednotlivých předmětů.
@@ -33,13 +32,12 @@ public class Predmet implements Observable{
      * @param   prenositelny    informace zda předmět jde přenést
      * @param   viditelny   informace o viditelnosti předmětu
      */
-    public Predmet(String nazev, String popis, boolean prenositelny, boolean viditelny, HerniPlan herniPlan) {
+    public Predmet(String nazev, String popis, boolean prenositelny, boolean viditelny) {
         this.nazev = nazev;
         this.popis = popis;
         this.prenositelny = prenositelny;
         this.viditelny = viditelny;
         posluchaci = new ArrayList<Observer>();
-        this.herniPlan = herniPlan;
     }
     
     /**
@@ -54,7 +52,7 @@ public class Predmet implements Observable{
      * @param   textPouzijPoprve    text který se vypíše, když poprvé použiju předmět
      * @param   textPouzijOpakovane text který se vypíše, když opakovaně použiju předmět
      */
-    public Predmet(String nazev, String popis, boolean prenositelny, boolean viditelny, String kdeLzePouzit, String coZiskam, String textPouzijPoprve, String textPouzijOpakovane, HerniPlan herniPlan) {
+    public Predmet(String nazev, String popis, boolean prenositelny, boolean viditelny, String kdeLzePouzit, String coZiskam, String textPouzijPoprve, String textPouzijOpakovane) {
         this.nazev = nazev;
         this.popis = popis;
         this.prenositelny = prenositelny;
@@ -64,7 +62,6 @@ public class Predmet implements Observable{
         this.textPouzijPoprve = textPouzijPoprve;
         this.textPouzijOpakovane = textPouzijOpakovane;
         posluchaci = new ArrayList<Observer>();
-        this.herniPlan = herniPlan;
     }
     
     /**
@@ -79,7 +76,7 @@ public class Predmet implements Observable{
      * @param   textPouzijOpakovane text který se vypíše, když opakovaně použiju předmět
      * @param   zamcena informace zda předmět je zamčený
      */
-    public Predmet(String nazev, String popis, boolean prenositelny, String kdeLzePouzit, String coZiskam, String textPouzijPoprve, String textPouzijOpakovane, boolean zamcena, HerniPlan herniPlan) {
+    public Predmet(String nazev, String popis, boolean prenositelny, String kdeLzePouzit, String coZiskam, String textPouzijPoprve, String textPouzijOpakovane, boolean zamcena) {
         this.nazev = nazev;
         this.popis = popis;
         this.prenositelny = prenositelny;
@@ -89,7 +86,6 @@ public class Predmet implements Observable{
         this.zamcena = zamcena;
         this.kdeLzePouzit = kdeLzePouzit;
         posluchaci = new ArrayList<Observer>();
-        this.herniPlan = herniPlan;
     }
     
     /**
@@ -276,7 +272,7 @@ public class Predmet implements Observable{
 	}
 	public void oznamPosluchaci(){
 		for(Observer observer: posluchaci) {
-			observer.uprav(herniPlan.getAktualniLokace());
+			observer.uprav();
 		}
 	}
 }

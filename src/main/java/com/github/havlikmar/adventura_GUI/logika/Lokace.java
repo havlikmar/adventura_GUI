@@ -38,6 +38,9 @@ public class Lokace implements Observable{
     private Map<String, Postava> postavy;
     private Map<String, Bytost> bytosti;
     private List<Observer> posluchaci;
+    private double poziceX;
+    private double poziceY;
+
 
     /**
      * Vytvoření lokace se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -47,7 +50,7 @@ public class Lokace implements Observable{
      * @param    popis Popis lokace
      * @param    dosazitelny hodnota zda je lokace dosažitelná
      */
-    public Lokace(String nazev, String popis, boolean dosazitelny) {
+    public Lokace(String nazev, String popis, boolean dosazitelny, Double poziceX, Double poziceY) {
         this.nazev = nazev;
         this.popis = popis;
         this.dosazitelny = dosazitelny;
@@ -56,6 +59,9 @@ public class Lokace implements Observable{
         postavy = new HashMap<>();
         bytosti = new HashMap<>();
         posluchaci = new ArrayList<Observer>();
+        this.poziceX = poziceX;
+        this.poziceY = poziceY;
+
     }
     
     /**
@@ -67,7 +73,7 @@ public class Lokace implements Observable{
      * @param   zamcena hodnota zda je lokace zamčená
      * @param   klic    věc potřebná k odemčení lokace
      */
-    public Lokace(String nazev, String popis, boolean zamcena, String klic) {
+    public Lokace(String nazev, String popis, boolean zamcena, String klic, Double poziceX, Double poziceY) {
         this.nazev = nazev;
         this.popis = popis;
         this.zamcena = zamcena;
@@ -77,6 +83,8 @@ public class Lokace implements Observable{
         postavy = new HashMap<>();
         bytosti = new HashMap<>();
         posluchaci = new ArrayList<Observer>();
+        this.poziceX = poziceX;
+        this.poziceY = poziceY;
     }
 
     /**
@@ -284,7 +292,7 @@ public class Lokace implements Observable{
      */
     public void vlozPredmet(Predmet predmet) {
     	predmety.put(predmet.getNazev(), predmet);
-    	this.oznamPosluchaci();
+    	oznamPosluchaci();
     }
 
     /**
@@ -295,7 +303,7 @@ public class Lokace implements Observable{
      */
     public Predmet vezmiPredmet(String nazevPredmetu) {
     	Predmet pomoc = predmety.remove(nazevPredmetu);
-    	this.oznamPosluchaci();
+    	oznamPosluchaci();
     	return pomoc;
     }
     
@@ -393,6 +401,7 @@ public class Lokace implements Observable{
      */
     public void setDosazitelny(boolean dosazitelny) {
         this.dosazitelny = dosazitelny;
+        oznamPosluchaci();
     }  
     
     /**
@@ -434,6 +443,14 @@ public class Lokace implements Observable{
     public Map<String, Predmet> getPredmety(){
     	return predmety;
     }
+    
+    public Map<String, Bytost> getBytosti(){
+    	return bytosti;
+    }
+    
+    public Map<String, Postava> getPostavy(){
+    	return postavy;
+    }
  
     public void pridejPosluchace(Observer observer) {
     	posluchaci.add(observer);
@@ -443,7 +460,16 @@ public class Lokace implements Observable{
 	}
 	public void oznamPosluchaci(){
 		for(Observer observer: posluchaci) {
-			observer.uprav(this);
+			observer.uprav();
 		}
 	}
+	
+	public double getPoziceX() {
+        return poziceX ;
+    }
+
+    public double getPoziceY() {
+        return poziceY;
+    }
+
 }

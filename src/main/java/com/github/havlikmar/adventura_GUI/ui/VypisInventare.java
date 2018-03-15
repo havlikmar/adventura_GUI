@@ -20,7 +20,7 @@ public class VypisInventare implements Observer{
 		List<String> list = new ArrayList<String>();
 		observableList = FXCollections.observableList(list);
 		plan.getBatoh().pridejPosluchace(this);
-		uprav(plan.getAktualniLokace());
+		uprav();
 	}
 		
 	public ObservableList getPredmety() {
@@ -28,7 +28,7 @@ public class VypisInventare implements Observer{
 	}
 	
 	@Override
-	public void uprav(Lokace lokace) {
+	public void uprav() {
 		// TODO Auto-generated method stub
 		observableList.removeAll(observableList);		
 		for (String nazevPredmetu : plan.getBatoh().getPredmety().keySet()) {

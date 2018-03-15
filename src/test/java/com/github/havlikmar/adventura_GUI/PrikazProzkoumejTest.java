@@ -41,17 +41,17 @@ public class PrikazProzkoumejTest {
      */
     @Test
     public void testLzeProzkoumat() {
-        Predmet vec1 = new Predmet("vec1", POPIS1, true, true, hra1.getHerniPlan());
-        Predmet vec2 = new Predmet("vec2", "popis2", true, false, hra1.getHerniPlan()); 
-        Predmet vec3 = new Predmet("vec3", "popis3", false, true, hra1.getHerniPlan()); 
-        Predmet vec4 = new Predmet("vec4", "popis4", false, false, hra1.getHerniPlan()); 
+        Predmet vec1 = new Predmet("vec1", POPIS1, true, true);
+        Predmet vec2 = new Predmet("vec2", "popis2", true, false); 
+        Predmet vec3 = new Predmet("vec3", "popis3", false, true); 
+        Predmet vec4 = new Predmet("vec4", "popis4", false, false); 
         
         Postava postava = new Postava("postava", vec1, vec2,"mluvPred", "mluvPo", "nechci", "chci");
         
         Bytost bytost1 = new Bytost("bytost1", POPIS1, true);
         Bytost bytost2 = new Bytost("bytost2", "popis2", false);
 
-        Lokace lokace1 = new Lokace("lokace1","",true);
+        Lokace lokace1 = new Lokace("lokace1","",true, 247.00, 308.00);
         
         lokace1.vlozPredmet(vec1);
         lokace1.vlozPredmet(vec2);

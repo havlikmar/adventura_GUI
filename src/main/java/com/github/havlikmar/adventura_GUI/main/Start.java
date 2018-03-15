@@ -8,9 +8,11 @@ import com.github.havlikmar.adventura_GUI.ui.Controller;
 import com.github.havlikmar.adventura_GUI.ui.TextoveRozhrani;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 /*******************************************************************************

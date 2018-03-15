@@ -50,53 +50,53 @@ public class HerniPlan implements Observable{
      * Jako výchozí aktuální lokaci nastaví domeček.
      */
     private void zalozLokaceHry() {
-        Lokace domecek = new Lokace("domeček","domeček, ve kterém přebýváš", true);
+        Lokace domecek = new Lokace("domeček","domeček, ve kterém přebýváš", true, 82.00, 308.00);
         lokace.add(domecek);
-        Lokace chaloupka = new Lokace("chaloupka", "na posteli spí jezdec. Za ním je truhla. U pásu má přivázaný klíč", true, "klíč");
+        Lokace chaloupka = new Lokace("chaloupka", "na posteli spí jezdec. Za ním je truhla. U pásu má přivázaný klíč", true, "klíč", 495.00, 400.00);
         lokace.add(chaloupka);
-        Lokace jeskyne = new Lokace("jeskyně","strašitelná jeskyně, ve které se to hemží hladovými krysami",true);
+        Lokace jeskyne = new Lokace("jeskyně","strašitelná jeskyně, ve které se to hemží hladovými krysami",true, 538.00, 252.00);
         lokace.add(jeskyne);
-        Lokace les = new Lokace("les","les v kterým jsou pytláci a chycené medvídě", true);
+        Lokace les = new Lokace("les","les v kterým jsou pytláci a chycené medvídě", true, 247.00, 308.00);
         lokace.add(les);
-        Lokace hlubokyLes = new Lokace(HLUBOKY_LES,"temný les, ve kterém rostou bylinky s vchodem do jeskyně.\nUprostřed je studně a kousek od ní chaloupka. Nad jeskyní je hromada kamení s kládou, která z něj vyčnívá", true);
+        Lokace hlubokyLes = new Lokace(HLUBOKY_LES,"temný les, ve kterém rostou bylinky s vchodem do jeskyně.\nUprostřed je studně a kousek od ní chaloupka. Nad jeskyní je hromada kamení s kládou, která z něj vyčnívá", true, 405.00, 308.00);
         lokace.add(hlubokyLes);
-        Lokace okrajLesa = new Lokace("okraj_lesa","okraj lesa, u kterého se u kotlíku s ohněm hrbí stařenka",true);
+        Lokace okrajLesa = new Lokace("okraj_lesa","okraj lesa, u kterého se u kotlíku s ohněm hrbí stařenka",true, 247.00, 400.00);
         lokace.add(okrajLesa);
-        Lokace reka = new Lokace("řeka","řeka u které se nachází pastevec s lodí", true);
+        Lokace reka = new Lokace("řeka","řeka u které se nachází pastevec s lodí", true, 247.00, 214.00);
         lokace.add(reka);
-        Lokace druhyBreh = new Lokace("druhý_břeh","druhý břeh řeky, na břehu je krysař", false);
+        Lokace druhyBreh = new Lokace("druhý_břeh","druhý břeh řeky, na břehu je krysař", false, 248.00, 121.00);
         lokace.add(druhyBreh);
-        Lokace dul = new Lokace("důl","opuštěný důl, kde se dřív těžili drahokamy. Nahází se zde trpaslík", true);
+        Lokace dul = new Lokace("důl","opuštěný důl, kde se dřív těžili drahokamy. Nahází se zde trpaslík", true, 370.00, 69.00);
         lokace.add(dul);
-        Lokace cesta = new Lokace("cesta","cesta na které je kupec", true);
+        Lokace cesta = new Lokace("cesta","cesta na které je kupec", true, 500.00, 121.00);
         lokace.add(cesta);
-        Lokace dnoStudne = new Lokace("dno_studně","dno studně se zářicí truhlou. Truhlu obklopuje magický štít", false);
+        Lokace dnoStudne = new Lokace("dno_studně","dno studně se zářicí truhlou. Truhlu obklopuje magický štít", false, 653.00, 308.00);
         lokace.add(dnoStudne);
-        Lokace konecJeskyne = new Lokace("konec_jeskyně","konec jeskyně, kde hybernuje vlkodlak. Pod ním leží lesklý klíč", true);
+        Lokace konecJeskyne = new Lokace("konec_jeskyně","konec jeskyně, kde hybernuje vlkodlak. Pod ním leží lesklý klíč", true, 774.00, 353.00);
         lokace.add(konecJeskyne);
         
-        Predmet klicOdTruhly = new Predmet("klíč_od_truhly", "starý zdobený klíč od truhly", true, false, this);
-        Predmet krumpac = new Predmet("krumpáč", "starý krumpáč pro těžbu", true, true, "důl", "drahokamy", "Kutáš, kutáš a najednou ze zdi vypadne malý drahokam", "už jsi tady kutal", this);
-        Predmet buchty = new Predmet("buchty", "čerstvě upečené buchty", true, true, this);
-        Predmet bylinky = new Predmet("bylinky", "léčebné bylinky", true, true, "okraj_lesa", "lektvar", "Dáš bylinky vařit a za chvíli roztok změní barvu. Lektvar je na světě","Už jsi lektvar uvařil", this);
-        Predmet zdrojMoci = new Predmet("zdroj_moci", "zářivá kulička. Zdroj jezdcovi moci", true, false, this);
-        Predmet pistalka = new Predmet("píšťalka", "stará vyřezávaná píšťalka", true, true, "jeskyně", "dno_studně", "Zapíškáš na píšťalku a krysy odkráčejí ven. Za nimi se objevil otvor", "Už píštalku použil.", this );
-        Predmet drahokamy = new Predmet("drahokamy", "nefalšované drahokamy", true, false, this);
-        Predmet klicOdPasti = new Predmet("klíč_od_pasti", "klíč od pasti medvíděte", true, true, "les", "medvídě", "Odemkneš past a medvídě štastně klopýtá do lesa", "Už jsi medvídě osvobodil", this);
-        Predmet lopata = new Predmet("lopata", "rezava lopata", true, true, HLUBOKY_LES, "pytlík_peněz", "Kopeš, kopeš a najednou objevíš pytlík plný zlaťáků", "Už jsi tady kopal", this);
-        Predmet pytlikPenez = new Predmet("pytlík_peněz", "pytlík peněz", true, false, this);
-        Predmet povoleniPlavby = new Predmet("povolení_plavby", "pytlík peněz", true, true, this);
-        Predmet truhla = new Predmet("truhla", "velká zdobená truhla", false, "klíč_od_truhly", "poklad", "Odemykáš krásnou ozdobnou truhlu.", "Truhlu jsi již odemkl", true, this);
-        Predmet mec = new Predmet("meč", "čistý, lesklý, nový meč", true, true, "konec_jeskyně", "vlkodlak", "Vlkodlak se probouzí. Vrhá na tebe vrhne a ty ho zasahuješ. Vzápětí umírá v hrozných bolestech", "Už jsi vlkodlaka zabil.", this);
-        Predmet poklad = new Predmet("poklad", "poklad nevyčíslitelné hodnoty", true, false, this);
-        Predmet klic = new Predmet("klíč", "tajemný klíč", true, false, HLUBOKY_LES, "chaloupka", "Dáš klíč do zámku a otočíš jím. Vzápětí se dveře otevřou", "Už jsi dveře otevřel.", this);
-        Predmet klada = new Predmet("kláda", "kláda na hromadě kamenů ", false, true, HLUBOKY_LES, "jeskyně", "Zatlačíš na kládu a najednou se kameny sesunou a zasypou jeskyni", "Už jsi kládu použil.", this);
-        Predmet recept = new Predmet("recept","K výrobě lektvaru jsou potřeba bylinky z nedalekého lesa. Dej je vařit nad ohněm a lektvar je na světě.", true, false, this);
-        Predmet lektvar = new Predmet("lektvar", "lektvar proti kletbě", true, false, this);
-        Predmet talisman = new Predmet("talisman","talisman, který ruší účinky ochrané kletby", true, true, this);
-        Predmet truhlicka = new Predmet("truhlička", "tajemná truhlička, kterou obklopuje tajemná záře", false, "talisman", "zdroj_moci", "Nasadíš si talisman dojdeš k předmětu a on se otevře. Vypadne z něj zářivá kulička", "Už jsi truhličku otevřel", true, this);
+        Predmet klicOdTruhly = new Predmet("klíč_od_truhly", "starý zdobený klíč od truhly", true, false);
+        Predmet krumpac = new Predmet("krumpáč", "starý krumpáč pro těžbu", true, true, "důl", "drahokamy", "Kutáš, kutáš a najednou ze zdi vypadne malý drahokam", "už jsi tady kutal");
+        Predmet buchty = new Predmet("buchty", "čerstvě upečené buchty", true, true);
+        Predmet bylinky = new Predmet("bylinky", "léčebné bylinky", true, true, "okraj_lesa", "lektvar", "Dáš bylinky vařit a za chvíli roztok změní barvu. Lektvar je na světě","Už jsi lektvar uvařil");
+        Predmet zdrojMoci = new Predmet("zdroj_moci", "zářivá kulička. Zdroj jezdcovi moci", true, false);
+        Predmet pistalka = new Predmet("píšťalka", "stará vyřezávaná píšťalka", true, true, "jeskyně", "dno_studně", "Zapíškáš na píšťalku a krysy odkráčejí ven. Za nimi se objevil otvor", "Už píštalku použil.");
+        Predmet drahokamy = new Predmet("drahokamy", "nefalšované drahokamy", true, false);
+        Predmet klicOdPasti = new Predmet("klíč_od_pasti", "klíč od pasti medvíděte", true, true, "les", "medvídě", "Odemkneš past a medvídě štastně klopýtá do lesa", "Už jsi medvídě osvobodil");
+        Predmet lopata = new Predmet("lopata", "rezava lopata", true, true, HLUBOKY_LES, "pytlík_peněz", "Kopeš, kopeš a najednou objevíš pytlík plný zlaťáků", "Už jsi tady kopal");
+        Predmet pytlikPenez = new Predmet("pytlík_peněz", "pytlík peněz", true, false);
+        Predmet povoleniPlavby = new Predmet("povolení_plavby", "pytlík peněz", true, true);
+        Predmet truhla = new Predmet("truhla", "velká zdobená truhla", false, "klíč_od_truhly", "poklad", "Odemykáš krásnou ozdobnou truhlu.", "Truhlu jsi již odemkl", true);
+        Predmet mec = new Predmet("meč", "čistý, lesklý, nový meč", true, true, "konec_jeskyně", "vlkodlak", "Vlkodlak se probouzí. Vrhá na tebe vrhne a ty ho zasahuješ. Vzápětí umírá v hrozných bolestech", "Už jsi vlkodlaka zabil.");
+        Predmet poklad = new Predmet("poklad", "poklad nevyčíslitelné hodnoty", true, false);
+        Predmet klic = new Predmet("klíč", "tajemný klíč", true, false, HLUBOKY_LES, "chaloupka", "Dáš klíč do zámku a otočíš jím. Vzápětí se dveře otevřou", "Už jsi dveře otevřel.");
+        Predmet klada = new Predmet("kláda", "kláda na hromadě kamenů ", false, true, HLUBOKY_LES, "jeskyně", "Zatlačíš na kládu a najednou se kameny sesunou a zasypou jeskyni", "Už jsi kládu použil.");
+        Predmet recept = new Predmet("recept","K výrobě lektvaru jsou potřeba bylinky z nedalekého lesa. Dej je vařit nad ohněm a lektvar je na světě.", true, false);
+        Predmet lektvar = new Predmet("lektvar", "lektvar proti kletbě", true, false);
+        Predmet talisman = new Predmet("talisman","talisman, který ruší účinky ochrané kletby", true, true);
+        Predmet truhlicka = new Predmet("truhlička", "tajemná truhlička, kterou obklopuje tajemná záře", false, "talisman", "zdroj_moci", "Nasadíš si talisman dojdeš k předmětu a on se otevře. Vypadne z něj zářivá kulička", "Už jsi truhličku otevřel", true);
         
-        Postava paseraci = new Postava("pašeráci", drahokamy, klicOdPasti, "Nechceš hezké medívídě, může se hodit jako lovecká trofej, nebo ho můžeš prodat dál, či ho pustit pokud jsi lidumil?", "S tebou byla radost obchodovat", "To my nechceme. Chceme drahokamy!", "Dobrá nabídka, tady máš klíč od pasti a dělej si co chceš. Dáme ti jednu radu, nedaleko je hromada kamenů, dávej si pozor,\npřed nedávnem někdo zahradil jeskyni. Vypadalo to, jako by to někdo udělal schválně.");
+        Postava paseraci = new Postava("pašeráci", drahokamy, klicOdPasti, "Nechceš hezké medívídě, může se hodit jako lovecká trofej,\nnebo ho můžeš prodat dál, či ho pustit pokud jsi lidumil?", "S tebou byla radost obchodovat", "To my nechceme. Chceme drahokamy!", "Dobrá nabídka, tady máš klíč od pasti a dělej si co chceš. Dáme ti jednu radu, nedaleko je hromada kamenů, dávej si pozor,\npřed nedávnem někdo zahradil jeskyni. Vypadalo to, jako by to někdo udělal schválně.");
         Postava pastevec = new Postava("pastevec", "slepice nic pes slepice zrní nic slepice ", povoleniPlavby, "Nechceš mi pomoci. Potřebuji převést psa, slepici, a pytel zrní. Můžu převést jen jednu věc.\nPes nemůže být na stejném břehu se slepicí a slepice se zrním. Pokud to vyřešíš, můžeš za to použít mou loď.", "Děkuji za vyřešení hádanky", "To není řešení.", "Správné řešení, tady máš povolení užívat mou loď.");
         Postava kupec = new Postava("kupec", pytlikPenez, mec, "Potřebuji pomoc. V hlubokém lese jsem před časem zakopal peníze. Bohužel tam nyní straší a já se tam bojím jít,\npokud mi je přineseš dám ti tento meč.", PODEKOVANI, "To nechci. Chtěl jsem své peníze.", "Tady máš ten slíbený meč");
         Postava krysar = new Postava("krysař", povoleniPlavby, pistalka, "Potřebuji pomoc. Potřebuji se dostat na druhou stranu. Můžu ti dát svou píštalku, která dokáže ovládat myši.", PODEKOVANI, "To nechci. Potřebuji povolení plavby.", "Zde je tvá píštalka");
@@ -175,7 +175,7 @@ public class HerniPlan implements Observable{
      */
     public void setAktualniLokace(Lokace lokace) {
         aktualniLokace = lokace;
-        this.oznamPosluchaci();
+        oznamPosluchaci();
     }
     
     /**
@@ -319,7 +319,7 @@ public class HerniPlan implements Observable{
 	}
 	public void oznamPosluchaci(){
 		for(Observer observer: posluchaci) {
-			observer.uprav(aktualniLokace);
+			observer.uprav();
 		}
 	}
 	public ArrayList<Lokace> getLokace(){

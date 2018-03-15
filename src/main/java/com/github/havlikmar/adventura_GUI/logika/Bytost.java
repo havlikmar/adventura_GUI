@@ -1,15 +1,22 @@
 package com.github.havlikmar.adventura_GUI.logika;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.github.havlikmar.adventura_GUI.ui.Observable;
+import com.github.havlikmar.adventura_GUI.ui.Observer;
+
 /**
  * Třída Bytost představuje záznam bytostí ve hře.
  * 
  * @author     Martin Havlík
  * @version    6.5.2017
  */
-public class Bytost {
+public class Bytost implements Observable{
     private String nazev;
     private String popis;
     private boolean viditelny = true;
+    private List<Observer> posluchaci;
     
     /**
      * Konstruktor pro vytvoření jednotlivých bytostí.
@@ -20,6 +27,7 @@ public class Bytost {
     public Bytost(String nazev, String popis) {
         this.nazev = nazev;
         this.popis = popis;
+        posluchaci = new ArrayList<Observer>();
     }
     
     /**
@@ -33,6 +41,7 @@ public class Bytost {
         this.nazev = nazev;
         this.popis = popis;
         this.viditelny = viditelny;
+        posluchaci = new ArrayList<Observer>();
     }
     
     /**
@@ -51,6 +60,7 @@ public class Bytost {
      */
     public void setViditelny(boolean viditelny) {
         this.viditelny = viditelny;
+    	oznamPosluchaci();
     }
     
     /**
@@ -70,4 +80,16 @@ public class Bytost {
     public String getPopis() {
         return popis;
     }
+    
+    public void pridejPosluchace(Observer observer) {
+    	posluchaci.add(observer);
+    }
+	public void odeberPosluchace(Observer observer){
+		posluchaci.remove(observer);
+	}
+	public void oznamPosluchaci(){
+		for(Observer observer: posluchaci) {
+			observer.uprav();
+		}
+	}
 }

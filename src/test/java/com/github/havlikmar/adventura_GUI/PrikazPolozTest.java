@@ -42,10 +42,10 @@ public class PrikazPolozTest {
      */
     @Test
     public void testLzePolozit() {
-        Predmet vec1 = new Predmet(VEC1, "popis1", true, true, hra1.getHerniPlan()); 
-        Predmet vec2 = new Predmet(VEC2, "popis2", true, true, hra1.getHerniPlan()); 
+        Predmet vec1 = new Predmet(VEC1, "popis1", true, true); 
+        Predmet vec2 = new Predmet(VEC2, "popis2", true, true); 
         
-        Lokace lokace1 = new Lokace("lokace1","",true);
+        Lokace lokace1 = new Lokace("lokace1","",true, 247.00, 308.00);
         
         Bytost bytost1 = new Bytost("bytost1", "popis1", true);
         

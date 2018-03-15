@@ -35,10 +35,10 @@ public class LokaceTest {
      */
     @Test
     public  void testLzeProjit() {      
-        Lokace lokace1 = new Lokace("hala", "vstupní hala budovy VŠE na Jižním městě",true);
-        Lokace lokace2 = new Lokace("bufet", "bufet, kam si můžete zajít na svačinku",true);
-        Lokace lokace3 = new Lokace("lokace3", "je nedostupná", false);
-        Lokace lokace4 = new Lokace("lokace4", "je zamčená", true, "klíč1");
+        Lokace lokace1 = new Lokace("hala", "vstupní hala budovy VŠE na Jižním městě",true, 247.00, 308.00);
+        Lokace lokace2 = new Lokace("bufet", "bufet, kam si můžete zajít na svačinku",true, 247.00, 308.00);
+        Lokace lokace3 = new Lokace("lokace3", "je nedostupná", false, 247.00, 308.00);
+        Lokace lokace4 = new Lokace("lokace4", "je zamčená", true, "klíč1", 247.00, 308.00);
         
         lokace1.setVychod(lokace2);
         lokace2.setVychod(lokace1);

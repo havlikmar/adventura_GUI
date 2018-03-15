@@ -37,13 +37,13 @@ public class PrikazDejTest {
      */
     @Test
     public void testLzeDat() {
-        Predmet vec1 = new Predmet("vec1", "", true, true, hra1.getHerniPlan()); // tento predmet chce
-        Predmet vec2 = new Predmet("vec2", "", true, true, hra1.getHerniPlan()); // tento predmet dá
-        Predmet vec3 = new Predmet("vec3", "", true, true, hra1.getHerniPlan()); 
+        Predmet vec1 = new Predmet("vec1", "", true, true); // tento predmet chce
+        Predmet vec2 = new Predmet("vec2", "", true, true); // tento predmet dá
+        Predmet vec3 = new Predmet("vec3", "", true, true); 
         
         Postava postava = new Postava("postava", vec1, vec2,"mluvPred", "mluvPo", "nechci", "chci");
 
-        Lokace lokace1 = new Lokace("lokace1","",true);
+        Lokace lokace1 = new Lokace("lokace1","",true, 247.00, 308.00);
         
         lokace1.vlozPredmet(vec1);
         lokace1.vlozPredmet(vec3);
