@@ -12,7 +12,6 @@ package com.github.havlikmar.adventura_GUI.logika;
  * @author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Riha, upravil Martin Havlík
  * @version    LS 2016/2017 (upraveno 17.5.2017)
  */
-
 public class Hra implements IHra {
     private SeznamPrikazu platnePrikazy;    
     private HerniPlan herniPlan;

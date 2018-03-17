@@ -60,6 +60,7 @@ public class PrikazDej implements IPrikaz {
             Predmet dar = postava.getCoMa();
             herniPlan.getBatoh().polozPredmet(nazevPredmetu);
             herniPlan.getBatoh().vlozPredmet(dar);
+            herniPlan.getBatoh().getPredmet(dar.getNazev()).setViditelny(true);
             postava.setVymena(true);
         }
         

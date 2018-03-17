@@ -13,7 +13,7 @@ import java.util.List;
  * Třída Batoh představuje batoh pro uchovávání věcí hráče
  * 
  * @author     Martin Havlík
- * @version    6.5.2017
+ * @version    17.3.2018
  */
 public class Batoh implements Observable{
     private Map<String, Predmet> veciVBatohu;   
@@ -23,7 +23,7 @@ public class Batoh implements Observable{
     /**
      * Konstruktor pro vytvoření obsahu batohu
      */
-    public Batoh(HerniPlan herniPlan) {
+    public Batoh() {
         veciVBatohu = new HashMap<>();
         posluchaci = new ArrayList<Observer>();
     }
@@ -95,16 +95,37 @@ public class Batoh implements Observable{
        return veciVBatohu.get(nazevPredmetu);
     }  
     
+    /**
+     * Metoda pro získání předmětů z batohu
+     * 
+     * @return  vrací předměty batohu
+     */
     public Map<String, Predmet> getPredmety(){
     	return veciVBatohu;
     }
  
+    /**
+	 * Metoda pro přidání posluchače k odběru
+	 * 
+	 *  @param	observer posluchač
+	 */
     public void pridejPosluchace(Observer observer) {
     	posluchaci.add(observer);
     }
+    
+    /**
+	 * Metoda pro odebrání posluchače z odběru
+	 * 
+	 *  @param	observer posluchač
+	 */
 	public void odeberPosluchace(Observer observer){
 		posluchaci.remove(observer);
 	}
+	
+	/**
+	 * Metoda pro oznámenín posluchačů o změně
+	 * 
+	 */
 	public void oznamPosluchaci(){
 		for(Observer observer: posluchaci) {
 			observer.uprav();

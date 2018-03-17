@@ -17,7 +17,7 @@ import com.github.havlikmar.adventura_GUI.ui.Observer;
  * a pamatuje si aktuální lokaci, ve které se hráč právě nachází.
  *
  * @author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Riha, upravil Martin Havlík
- * @version    LS 2016/2017 (upraveno 17.5.2017)
+ * @version    LS 2016/2017 (upraveno 17.3.2018)
  */
 public class HerniPlan implements Observable{
     private Batoh batoh;
@@ -41,7 +41,7 @@ public class HerniPlan implements Observable{
     public HerniPlan() {
     	lokace = new ArrayList<Lokace>();
         zalozLokaceHry();
-        batoh = new Batoh(this);  
+        batoh = new Batoh();  
         posluchaci = new ArrayList<Observer>();
     }
 
@@ -238,18 +238,18 @@ public class HerniPlan implements Observable{
             
             if (batoh.obsahujePredmet("zdroj_moci")) {
                 verzeKonce = 0;
-                return "\n" + "Najednout se z batohu objeví záře, jezdec začne krvácet až vykrvácí. Jezdec padá a vypadává z něj klíč";
+                return "\n" + "Najednout se z batohu objeví záře, jezdec začne krvácet až vykrvácí.\nJezdec padá a vypadává z něj klíč";
             }
             
             if (zachranilMedvide) {
                 
                 if (zavalenyVchod) {
                     verzeKonce = 1;
-                    return "\n" + "Jezdec vyjde z chaloupky v tom přiběhne medvědice a schodí ho do studně. Ze studně je slyšet bušení a medvedice utíká zpět k medvíděti.\nJdeš se podívat do chaloupky a uvidíš na zemi klíč.";
+                    return "\n" + "Jezdec vyjde z chaloupky v tom přiběhne medvědice a schodí ho do studně.\nZe studně je slyšet bušení a medvedice utíká zpět k medvíděti.\nJdeš se podívat do chaloupky a uvidíš na zemi klíč.";
                 }
                 else {
                     verzeKonce = 2;
-                    return "\n" + "Jezdec vyjde z chaloupky v tom přiběhne medvědice a schodí ho do studně. Za chvíli se z lesa objeví jezdec, jako by se mu nic nestalo a zabijí tě.";
+                    return "\n" + "Jezdec vyjde z chaloupky v tom přiběhne medvědice a schodí ho do studně.\nZa chvíli se z lesa objeví jezdec, jako by se mu nic nestalo a zabijí tě.";
                 }
             }
             
@@ -311,17 +311,39 @@ public class HerniPlan implements Observable{
         verzeKonce = newVerzeKonce;
     }
     
+    /**
+	 * Metoda pro přidání posluchače k odběru
+	 * 
+	 *  @param	observer posluchač
+	 */
     public void pridejPosluchace(Observer observer) {
     	posluchaci.add(observer);
     }
+    
+    /**
+	 * Metoda pro odebrání posluchače z odběru
+	 * 
+	 *  @param	observer posluchač
+	 */
 	public void odeberPosluchace(Observer observer){
 		posluchaci.remove(observer);
 	}
+	
+	/**
+	 * Metoda pro oznámenín posluchačů o změně
+	 * 
+	 */
 	public void oznamPosluchaci(){
 		for(Observer observer: posluchaci) {
 			observer.uprav();
 		}
 	}
+	
+	/**
+	 * Metoda pro získání lokací
+	 * 
+	 * @return  vrátí všechny lokace
+	 */
 	public ArrayList<Lokace> getLokace(){
 		return lokace;
 	}

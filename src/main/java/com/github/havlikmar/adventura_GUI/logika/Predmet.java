@@ -10,7 +10,7 @@ import com.github.havlikmar.adventura_GUI.ui.Observer;
  * Třída Predmet představuje záznam předmětů ve hře.
  * 
  * @author     Martin Havlík
- * @version    9.5.2017
+ * @version    13.3.2018
  */
 public class Predmet implements Observable{
     private String nazev;
@@ -219,7 +219,7 @@ public class Predmet implements Observable{
         if (predmet.equals("vlkodlak")) {
             kdeLzePouzit = "chaloupka";
             coZiskam = "tajemný_jezdec";
-            textPouzijPoprve = "Jezdec se na tebe vrhá. Ty ho zasáhneš, bohužel meč se v něm zasekl. Vypadá to, že jezdec je nazastavitelný a pronásleduje tě.";
+            textPouzijPoprve = "Jezdec se na tebe vrhá. Ty ho zasáhneš, bohužel meč se v něm zasekl.\nVypadá to, že jezdec je nazastavitelný a pronásleduje tě.";
             textPouzijOpakovane = "Jezdec je již mrtvý.";
             lokace.setPopis("konec jeskyně, kde se nachází mrtvý vlkodlak.");
 
@@ -264,12 +264,28 @@ public class Predmet implements Observable{
         return nazev;
     }
     
+    /**
+	 * Metoda pro přidání posluchače k odběru
+	 * 
+	 *  @param	observer posluchač
+	 */
     public void pridejPosluchace(Observer observer) {
     	posluchaci.add(observer);
     }
+    
+    /**
+	 * Metoda pro odebrání posluchače z odběru
+	 * 
+	 *  @param	observer posluchač
+	 */
 	public void odeberPosluchace(Observer observer){
 		posluchaci.remove(observer);
 	}
+	
+	/**
+	 * Metoda pro oznámenín posluchačů o změně
+	 * 
+	 */
 	public void oznamPosluchaci(){
 		for(Observer observer: posluchaci) {
 			observer.uprav();

@@ -16,15 +16,16 @@ import java.io.*;
  * a vypisuje odpověď logiky na konzoli.
  *
  * @author     Michael Kolling, Luboš Pavlíček, Jarmila Pavlíčková, Jan Říha
- * @version    LS 2016/2017
+ * @version    LS 2016/2017 (úprava Martin Havlík 17.3.2018)
  */
-
 public class TextoveRozhrani {
     private IHra hra;
 	private Scanner scanner;
 
     /**
      * Vytváří hru.
+     * 
+     * @param	hra adventura, kterou hrajeme
      */
     public TextoveRozhrani(IHra hra) {
         this.hra = hra;

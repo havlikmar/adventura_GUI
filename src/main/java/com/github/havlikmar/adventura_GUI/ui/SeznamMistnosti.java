@@ -9,14 +9,23 @@ import com.github.havlikmar.adventura_GUI.logika.Lokace;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Třída SeznamMistnosti představuje tvorbu seznamu východů pro GUI
+ * 
+ * @author     Martin Havlík
+ * @version    17.3.2018
+ */
 public class SeznamMistnosti implements Observer{
 	private HerniPlan plan;
 	private ObservableList<String> observableList;
-	private Controller controller;
-		
-	public SeznamMistnosti(HerniPlan plan, Controller controller) {
+	
+	/**
+     * Konstruktor pro vytvoření seznamu východů
+     * 
+     * @param    plan Herní plán
+     */
+	public SeznamMistnosti(HerniPlan plan) {
 		this.plan = plan;
-		this.controller = controller;
 		List<String> list = new ArrayList<String>();
 		observableList = FXCollections.observableList(list);
 		plan.pridejPosluchace(this);
@@ -26,10 +35,19 @@ public class SeznamMistnosti implements Observer{
 		uprav();
 	}
 		
-	public ObservableList getMistnosti() {
+	/**
+	 * Getter pro získání seznamu východů
+	 * 
+	 * @return    výpis sousedních východů
+	 */
+	public ObservableList<String> getMistnosti() {
 		return observableList;
 	}
-			
+		
+	/**
+	 * Metoda pro aktualizaci seznamu východů při změně lokace
+	 * 
+	 */
 	@Override
 	public void uprav() {
 		observableList.removeAll(observableList);

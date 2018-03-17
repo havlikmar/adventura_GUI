@@ -3,10 +3,10 @@
 package com.github.havlikmar.adventura_GUI.logika;
 
 /*******************************************************************************
- * Instance výčtového typu VolbaMožností představují ...
+ * Instance výčtového typu VolbaMožností představují volbu možností v příkazu použij. slouží k lepší čitelnosti kódu.
  *
- * @author    jméno autora
- * @version   0.00.000
+ * @author    Martin Havlík
+ * @version   17.3.2018
  */
 public enum VolbaMoznosti {
     PRENOSITELNA,

@@ -25,7 +25,7 @@ import com.github.havlikmar.adventura_GUI.ui.Observer;
  * si lokace ukládá odkaz na sousedící lokace.
  *
  * @author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Jan Riha, upravil Martin Havlík
- * @version    LS 2016/2017, (upraveno 16.5.2017)
+ * @version    LS 2016/2017, (upraveno 17.3.2018)
  */
 public class Lokace implements Observable{
     private String nazev;
@@ -49,6 +49,8 @@ public class Lokace implements Observable{
      * @param    nazev nazev lokace, jednoznačný identifikátor, jedno slovo nebo víceslovný název bez mezer
      * @param    popis Popis lokace
      * @param    dosazitelny hodnota zda je lokace dosažitelná
+     * @param    poziceX souřadnice X lokace
+     * @param    poziceY souřadnice Y lokace
      */
     public Lokace(String nazev, String popis, boolean dosazitelny, Double poziceX, Double poziceY) {
         this.nazev = nazev;
@@ -61,7 +63,6 @@ public class Lokace implements Observable{
         posluchaci = new ArrayList<Observer>();
         this.poziceX = poziceX;
         this.poziceY = poziceY;
-
     }
     
     /**
@@ -72,6 +73,8 @@ public class Lokace implements Observable{
      * @param   popis   Popis lokace
      * @param   zamcena hodnota zda je lokace zamčená
      * @param   klic    věc potřebná k odemčení lokace
+     * @param    poziceX souřadnice X lokace
+     * @param    poziceY souřadnice Y lokace
      */
     public Lokace(String nazev, String popis, boolean zamcena, String klic, Double poziceX, Double poziceY) {
         this.nazev = nazev;
@@ -440,34 +443,76 @@ public class Lokace implements Observable{
         return klic;
     }
     
+    /**
+	 * Metoda pro získání předmětů
+	 * 
+	 * @return  vrátí všechny předměty v lokaci
+	 */
     public Map<String, Predmet> getPredmety(){
     	return predmety;
     }
     
+    /**
+	 * Metoda pro získání bytostí
+	 * 
+	 * @return  vrátí všechny bytosti v lokaci
+	 */
     public Map<String, Bytost> getBytosti(){
     	return bytosti;
     }
     
+    /**
+	 * Metoda pro získání postav
+	 * 
+	 * @return  vrátí všechny postavy v lokaci
+	 */
     public Map<String, Postava> getPostavy(){
     	return postavy;
     }
  
+	/**
+	 * Metoda pro přidání posluchače k odběru
+	 * 
+	 *  @param	observer posluchač
+	 */
     public void pridejPosluchace(Observer observer) {
     	posluchaci.add(observer);
     }
+    
+    /**
+	 * Metoda pro odebrání posluchače z odběru
+	 * 
+	 *  @param	observer posluchač
+	 */
 	public void odeberPosluchace(Observer observer){
 		posluchaci.remove(observer);
 	}
+	
+	/**
+	 * Metoda pro oznámenín posluchačů o změně
+	 * 
+	 */
 	public void oznamPosluchaci(){
 		for(Observer observer: posluchaci) {
 			observer.uprav();
 		}
 	}
 	
+	 
+    /**
+	 * Metoda pro získání pozice X lokace
+	 * 
+	 * @return  vrátí pozici X
+	 */
 	public double getPoziceX() {
         return poziceX ;
     }
 
+	/**
+	 * Metoda pro získání pozice Y lokace
+	 * 
+	 * @return  vrátí pozici Y
+	 */
     public double getPoziceY() {
         return poziceY;
     }

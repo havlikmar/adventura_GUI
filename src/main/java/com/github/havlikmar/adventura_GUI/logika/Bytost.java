@@ -10,7 +10,7 @@ import com.github.havlikmar.adventura_GUI.ui.Observer;
  * Třída Bytost představuje záznam bytostí ve hře.
  * 
  * @author     Martin Havlík
- * @version    6.5.2017
+ * @version    17.3.2018
  */
 public class Bytost implements Observable{
     private String nazev;
@@ -33,9 +33,9 @@ public class Bytost implements Observable{
     /**
      * Konstruktor pro vytvoření jednotlivých bytostí. Slouží pro potřeby testů
      * 
-     * @param   nazev   název bytosti
-     * @param   popis   popis bytosti
-     * @param   viditelny   viditelnost bytosti
+     * @param   nazev  		název bytosti
+     * @param   popis  		popis bytosti
+     * @param   viditelny	viditelnost bytosti
      */
     public Bytost(String nazev, String popis, boolean viditelny) {
         this.nazev = nazev;
@@ -81,12 +81,28 @@ public class Bytost implements Observable{
         return popis;
     }
     
+    /**
+	 * Metoda pro přidání posluchače k odběru
+	 * 
+	 *  @param	observer posluchač
+	 */
     public void pridejPosluchace(Observer observer) {
     	posluchaci.add(observer);
     }
+    
+    /**
+	 * Metoda pro odebrání posluchače z odběru
+	 * 
+	 *  @param	observer posluchač
+	 */
 	public void odeberPosluchace(Observer observer){
 		posluchaci.remove(observer);
 	}
+	
+	/**
+	 * Metoda pro oznámenín posluchačů o změně
+	 * 
+	 */
 	public void oznamPosluchaci(){
 		for(Observer observer: posluchaci) {
 			observer.uprav();

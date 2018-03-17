@@ -10,14 +10,23 @@ import com.github.havlikmar.adventura_GUI.logika.Predmet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Třída VypisPredmetu představuje tvorbu seznamu předmětů v lokaci pro GUI
+ * 
+ * @author     Martin Havlík
+ * @version    17.3.2018
+ */
 public class VypisPredmetu implements Observer{
 	private HerniPlan plan;
 	private ObservableList<String> observableList;
-	private Controller controller;
 	
-	public VypisPredmetu(HerniPlan plan, Controller controller) {
+	/**
+     * Konstruktor pro vytvoření seznamu předmětů
+     * 
+     * @param    plan Herní plán
+     */
+	public VypisPredmetu(HerniPlan plan) {
 		this.plan = plan;
-		this.controller = controller;
 		List<String> list = new ArrayList<String>();
 		observableList = FXCollections.observableList(list);
 
@@ -34,13 +43,21 @@ public class VypisPredmetu implements Observer{
 		uprav();
 	}
 		
-	public ObservableList getPredmety() {
+	/**
+	 * Getter pro získání seznamu předmětů
+	 * 
+	 * @return    výpis prvků seznamu předmětů
+	 */
+	public ObservableList<String> getPredmety() {
 		return observableList;
 	}
 	
+	/**
+	 * Metoda pro aktualizaci seznamu prvků seznamu předmětů při změně lokace
+	 * 
+	 */
 	@Override
 	public void uprav() {
-		// TODO Auto-generated method stub
 		observableList.removeAll(observableList);		
 		for (String nazevPredmetu : plan.getAktualniLokace().getPredmety().keySet()) {
             if (plan.getAktualniLokace().getPredmet(nazevPredmetu).isViditelny()) {
