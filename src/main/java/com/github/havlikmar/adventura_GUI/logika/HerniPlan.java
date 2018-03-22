@@ -85,7 +85,7 @@ public class HerniPlan implements Observable{
         Predmet klicOdPasti = new Predmet("klíč_od_pasti", "klíč od pasti medvíděte", true, true, "les", "medvídě", "Odemkneš past a medvídě štastně klopýtá do lesa", "Už jsi medvídě osvobodil");
         Predmet lopata = new Predmet("lopata", "rezava lopata", true, true, HLUBOKY_LES, "pytlík_peněz", "Kopeš, kopeš a najednou objevíš pytlík plný zlaťáků", "Už jsi tady kopal");
         Predmet pytlikPenez = new Predmet("pytlík_peněz", "pytlík peněz", true, false);
-        Predmet povoleniPlavby = new Predmet("povolení_plavby", "pytlík peněz", true, true);
+        Predmet povoleniPlavby = new Predmet("povolení_plavby", "povolení k užití lodě", true, true);
         Predmet truhla = new Predmet("truhla", "velká zdobená truhla", false, "klíč_od_truhly", "poklad", "Odemykáš krásnou ozdobnou truhlu.", "Truhlu jsi již odemkl", true);
         Predmet mec = new Predmet("meč", "čistý, lesklý, nový meč", true, true, "konec_jeskyně", "vlkodlak", "Vlkodlak se probouzí. Vrhá na tebe vrhne a ty ho zasahuješ. Vzápětí umírá v hrozných bolestech", "Už jsi vlkodlaka zabil.");
         Predmet poklad = new Predmet("poklad", "poklad nevyčíslitelné hodnoty", true, false);

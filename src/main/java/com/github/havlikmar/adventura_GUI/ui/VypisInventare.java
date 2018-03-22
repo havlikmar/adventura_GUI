@@ -46,9 +46,7 @@ public class VypisInventare implements Observer{
 	public void uprav() {
 		observableList.removeAll(observableList);		
 		for (String nazevPredmetu : plan.getBatoh().getPredmety().keySet()) {
-			 if (plan.getBatoh().getPredmet(nazevPredmetu).isViditelny()) {
 					observableList.add(nazevPredmetu);
-	            }
 		}
 	}
 
