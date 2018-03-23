@@ -9,6 +9,8 @@ import com.github.havlikmar.adventura_GUI.logika.Predmet;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * Třída VypisPredmetu představuje tvorbu seznamu předmětů v lokaci pro GUI
@@ -18,7 +20,7 @@ import javafx.collections.ObservableList;
  */
 public class VypisPredmetu implements Observer{
 	private HerniPlan plan;
-	private ObservableList<String> observableList;
+	private ObservableList<ImageView> observableList;
 	
 	/**
      * Konstruktor pro vytvoření seznamu předmětů
@@ -27,7 +29,7 @@ public class VypisPredmetu implements Observer{
      */
 	public VypisPredmetu(HerniPlan plan) {
 		this.plan = plan;
-		List<String> list = new ArrayList<String>();
+		List<ImageView> list = new ArrayList<ImageView>();
 		observableList = FXCollections.observableList(list);
 
 		plan.pridejPosluchace(this);
@@ -48,7 +50,7 @@ public class VypisPredmetu implements Observer{
 	 * 
 	 * @return    výpis prvků seznamu předmětů
 	 */
-	public ObservableList<String> getPredmety() {
+	public ObservableList<ImageView> getPredmety() {
 		return observableList;
 	}
 	
@@ -61,7 +63,12 @@ public class VypisPredmetu implements Observer{
 		observableList.removeAll(observableList);		
 		for (String nazevPredmetu : plan.getAktualniLokace().getPredmety().keySet()) {
             if (plan.getAktualniLokace().getPredmet(nazevPredmetu).isViditelny()) {
-            	observableList.add(nazevPredmetu);
+            	String URL = plan.getAktualniLokace().getPredmet(nazevPredmetu).getObr();
+            	Image obr = new Image(getClass().getResourceAsStream(URL));
+            	ImageView image = new ImageView(obr);
+            	image.setId(nazevPredmetu);
+            	observableList.add(image);
+           // 	observableList.add(nazevPredmetu);
             }
 		}
 	}

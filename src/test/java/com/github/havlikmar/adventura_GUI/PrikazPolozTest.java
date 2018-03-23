@@ -42,8 +42,8 @@ public class PrikazPolozTest {
      */
     @Test
     public void testLzePolozit() {
-        Predmet vec1 = new Predmet(VEC1, "popis1", true, true); 
-        Predmet vec2 = new Predmet(VEC2, "popis2", true, true); 
+        Predmet vec1 = new Predmet(VEC1, "popis1", true, true,"neni potřeba"); 
+        Predmet vec2 = new Predmet(VEC2, "popis2", true, true,"neni potřeba"); 
         
         Lokace lokace1 = new Lokace("lokace1","",true, 247.00, 308.00);
         

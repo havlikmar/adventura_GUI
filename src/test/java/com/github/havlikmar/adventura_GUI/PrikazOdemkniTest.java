@@ -43,10 +43,10 @@ public class PrikazOdemkniTest {
      */
     @Test
     public void testLzeodemknout() {
-        Predmet vec1 = new Predmet("vec1", "", true, true, "lokace1", LOKACE2, POPRVE, "podruhe"); //klíč lokace
-        Predmet vec2 = new Predmet(VEC2, "", true, false); // věc co dostanu
-        Predmet vec3 = new Predmet("vec3", "", true, true); // klíč předmět
-        Predmet vec4 = new Predmet(VEC4, "", false, "vec3", VEC2, POPRVE, "podruhe", true); // co odemkne
+        Predmet vec1 = new Predmet("vec1", "", true, true, "lokace1", LOKACE2, POPRVE, "podruhe","neni potřeba"); //klíč lokace
+        Predmet vec2 = new Predmet(VEC2, "", true, false,"neni potřeba"); // věc co dostanu
+        Predmet vec3 = new Predmet("vec3", "", true, true,"neni potřeba"); // klíč předmět
+        Predmet vec4 = new Predmet(VEC4, "", false, "vec3", VEC2, POPRVE, "podruhe", true,"neni potřeba"); // co odemkne
         
         Lokace lokace1 = new Lokace("lokace1", "", true, 247.00, 308.00);
         Lokace lokace2 = new Lokace(LOKACE2, "", true, "vec1", 247.00, 308.00);

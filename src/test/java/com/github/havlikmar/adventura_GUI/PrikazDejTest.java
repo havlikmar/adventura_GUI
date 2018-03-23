@@ -37,9 +37,9 @@ public class PrikazDejTest {
      */
     @Test
     public void testLzeDat() {
-        Predmet vec1 = new Predmet("vec1", "", true, true); // tento predmet chce
-        Predmet vec2 = new Predmet("vec2", "", true, true); // tento predmet dá
-        Predmet vec3 = new Predmet("vec3", "", true, true); 
+        Predmet vec1 = new Predmet("vec1", "", true, true,"neni potřeba"); // tento predmet chce
+        Predmet vec2 = new Predmet("vec2", "", true, true,"neni potřeba"); // tento predmet dá
+        Predmet vec3 = new Predmet("vec3", "", true, true,"neni potřeba"); 
         
         Postava postava = new Postava("postava", vec1, vec2,"mluvPred", "mluvPo", "nechci", "chci");
 

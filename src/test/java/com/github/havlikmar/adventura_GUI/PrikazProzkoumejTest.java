@@ -41,10 +41,10 @@ public class PrikazProzkoumejTest {
      */
     @Test
     public void testLzeProzkoumat() {
-        Predmet vec1 = new Predmet("vec1", POPIS1, true, true);
-        Predmet vec2 = new Predmet("vec2", "popis2", true, false); 
-        Predmet vec3 = new Predmet("vec3", "popis3", false, true); 
-        Predmet vec4 = new Predmet("vec4", "popis4", false, false); 
+        Predmet vec1 = new Predmet("vec1", POPIS1, true, true,"neni potřeba");
+        Predmet vec2 = new Predmet("vec2", "popis2", true, false,"neni potřeba"); 
+        Predmet vec3 = new Predmet("vec3", "popis3", false, true,"neni potřeba"); 
+        Predmet vec4 = new Predmet("vec4", "popis4", false, false,"neni potřeba"); 
         
         Postava postava = new Postava("postava", vec1, vec2,"mluvPred", "mluvPo", "nechci", "chci");
         

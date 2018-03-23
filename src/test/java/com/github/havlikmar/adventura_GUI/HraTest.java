@@ -182,7 +182,7 @@ public class HraTest {
         assertEquals(LES, hra1.getHerniPlan().getAktualniLokace().getNazev());
         
         // Lopata je obsažena v originálním batohu
-        Predmet lopata = new Predmet("lopata", "rezava lopata", true, true, "hluboký_les", "pytlík_peněz", "Kopeš, kopeš a najednou objevíš pytlík plný zlaťáků", "Už jsi tady kopal");
+        Predmet lopata = new Predmet("lopata", "rezava lopata", true, true, "hluboký_les", "pytlík_peněz", "Kopeš, kopeš a najednou objevíš pytlík plný zlaťáků", "Už jsi tady kopal","neni potřeba");
         hra1.getHerniPlan().getAktualniLokace().vlozPredmet(lopata);
         hra1.zpracujPrikaz(VEZMI_LOPATA);
         
@@ -241,7 +241,7 @@ public class HraTest {
         assertEquals(false, hra1.konecHry());
         
         // píštalku již máme v inventáři
-        Predmet pistalka = new Predmet("píšťalka", "stará vyřezávaná píšťalka", true, true, "jeskyně", "dno_studně", "Zapíškáš na píšťalku a krysy odkráčejí ven", "Už píštalku použil.");
+        Predmet pistalka = new Predmet("píšťalka", "stará vyřezávaná píšťalka", true, true, "jeskyně", "dno_studně", "Zapíškáš na píšťalku a krysy odkráčejí ven", "Už píštalku použil.","neni potřeba");
         hra1.getHerniPlan().getAktualniLokace().vlozPredmet(pistalka);
         hra1.zpracujPrikaz("vezmi píšťalka");
         
@@ -254,7 +254,7 @@ public class HraTest {
         assertEquals("dno_studně", hra1.getHerniPlan().getAktualniLokace().getNazev());
         
         // Přidání meče do hry. Předmět již máme.
-        Predmet mec = new Predmet("meč", "čistý, lesklý, nový meč", true, true, "konec_jeskyně", "vlkodlak", "Vlkodlak se na tebe vrhne a ty ho zasahuješ. Vzápětí umírá v hrozných bolestech", "Už jsi vlkodlaka zabil.");
+        Predmet mec = new Predmet("meč", "čistý, lesklý, nový meč", true, true, "konec_jeskyně", "vlkodlak", "Vlkodlak se na tebe vrhne a ty ho zasahuješ. Vzápětí umírá v hrozných bolestech", "Už jsi vlkodlaka zabil.","neni potřeba");
         hra1.getHerniPlan().getAktualniLokace().vlozPredmet(mec);
         hra1.zpracujPrikaz("vezmi meč");
         
@@ -532,9 +532,9 @@ public class HraTest {
      */
     @Test
     public void testLzeMenitKonec() {
-        Predmet klic = new Predmet(KLIC, "tajemný klíč", true, true, HLUBOKY_LES, CHALOUPKA, "Dáš klíč do zámku a otočíš jím. Vzápětí se dveře otevřou", "Už jsi dveře otevřel.");
-        Predmet klicOdPasti = new Predmet("klíč_od_pasti", "klíč od pasti medvíděte", true, true, LES, "medvídě", "Odemkneš past a medvídě štastně klopýtá do lesa", "Už jsi medvídě osvobodil");
-        Predmet mec = new Predmet("meč", "čistý, lesklý, nový meč", true, true, CHALOUPKA, "tajemný_jezdec", "Jezdec se na tebe vrhá. Ty ho zasáhneš, bohužel meč se v něm zasekl. Vypadá to, že jezdec je nazastavitelný a pronásleduje tě z chaloupky.", "Jezdec je již mrtvý.");
+        Predmet klic = new Predmet(KLIC, "tajemný klíč", true, true, HLUBOKY_LES, CHALOUPKA, "Dáš klíč do zámku a otočíš jím. Vzápětí se dveře otevřou", "Už jsi dveře otevřel.","neni potřeba");
+        Predmet klicOdPasti = new Predmet("klíč_od_pasti", "klíč od pasti medvíděte", true, true, LES, "medvídě", "Odemkneš past a medvídě štastně klopýtá do lesa", "Už jsi medvídě osvobodil","neni potřeba");
+        Predmet mec = new Predmet("meč", "čistý, lesklý, nový meč", true, true, CHALOUPKA, "tajemný_jezdec", "Jezdec se na tebe vrhá. Ty ho zasáhneš, bohužel meč se v něm zasekl. Vypadá to, že jezdec je nazastavitelný a pronásleduje tě z chaloupky.", "Jezdec je již mrtvý.","neni potřeba");
         
         hra1.getHerniPlan().getAktualniLokace().vlozPredmet(klic);
         hra1.zpracujPrikaz("vezmi klíč");

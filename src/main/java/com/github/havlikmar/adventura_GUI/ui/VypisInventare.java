@@ -5,6 +5,8 @@ import java.util.List;
 import com.github.havlikmar.adventura_GUI.logika.HerniPlan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * Třída VypisInventare představuje tvorbu seznamu prvků inventáře pro GUI
@@ -14,7 +16,7 @@ import javafx.collections.ObservableList;
  */
 public class VypisInventare implements Observer{
 	private HerniPlan plan;
-	private ObservableList<String> observableList;
+	private ObservableList<ImageView> observableList;
 	
 	/**
      * Konstruktor pro vytvoření seznamu prvků inventáře
@@ -23,7 +25,7 @@ public class VypisInventare implements Observer{
      */
 	public VypisInventare(HerniPlan plan) {
 		this.plan = plan;
-		List<String> list = new ArrayList<String>();
+		List<ImageView> list = new ArrayList<ImageView>();
 		observableList = FXCollections.observableList(list);
 		plan.getBatoh().pridejPosluchace(this);
 		uprav();
@@ -34,7 +36,7 @@ public class VypisInventare implements Observer{
 	 * 
 	 * @return    výpis prvků seznamu inventáře
 	 */
-	public ObservableList<String> getPredmety() {
+	public ObservableList<ImageView> getPredmety() {
 		return observableList;
 	}
 	
@@ -46,7 +48,11 @@ public class VypisInventare implements Observer{
 	public void uprav() {
 		observableList.removeAll(observableList);		
 		for (String nazevPredmetu : plan.getBatoh().getPredmety().keySet()) {
-					observableList.add(nazevPredmetu);
+        	String URL = plan.getBatoh().getPredmet(nazevPredmetu).getObr();
+        	Image obr = new Image(getClass().getResourceAsStream(URL));
+        	ImageView image = new ImageView(obr);
+        	image.setId(nazevPredmetu);
+        	observableList.add(image);
 		}
 	}
 

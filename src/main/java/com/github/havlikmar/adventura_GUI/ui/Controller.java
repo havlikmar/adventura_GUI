@@ -15,6 +15,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
@@ -33,9 +34,9 @@ public class Controller extends GridPane implements Observer {
 	@FXML private TextArea  			textVystup;
 	@FXML private ListView<String>  	seznamMistnosti;
 	@FXML private ComboBox<String>  	prikazyMistnost;
-	@FXML private ListView<String>  	seznamPredmetu;
+	@FXML private ListView<ImageView>  	seznamPredmetu;
 	@FXML private ComboBox<String>  	prikazyPredmety;
-	@FXML private ListView<String>  	seznamInventare;
+	@FXML private ListView<ImageView>  	seznamInventare;
 	@FXML private ComboBox<String>  	prikazyInventar;
 	@FXML private ListView<String>  	seznamPostav;
 	@FXML private ComboBox<String> 		prikazyPostava;
@@ -98,7 +99,7 @@ public class Controller extends GridPane implements Observer {
 	 */
 	public void konecHry() {
 		if(hra.konecHry()) {
-			hra.vratEpilog();
+			textVystup.appendText("\n" + hra.vratEpilog());
 			hadej.setDisable(true);
 			textVstup.setDisable(true);
 			odesli.setDisable(true);
@@ -114,6 +115,7 @@ public class Controller extends GridPane implements Observer {
 			prikazyPostava.setDisable(true);
 			seznamBytosti.setDisable(true);
 			konec.setDisable(true);
+			
 		}
 	}
 	
@@ -162,7 +164,7 @@ public class Controller extends GridPane implements Observer {
 	 */
 	@FXML public void klikPostava(MouseEvent arg0) {
 		if (prikazyPostava.getSelectionModel().getSelectedItem().equals("dej")) {
-			vypis(hra.zpracujPrikaz(prikazyPostava.getSelectionModel().getSelectedItem() + " " + seznamInventare.getSelectionModel().getSelectedItem() + " " + seznamPostav.getSelectionModel().getSelectedItem()));
+			vypis(hra.zpracujPrikaz(prikazyPostava.getSelectionModel().getSelectedItem() + " " + seznamInventare.getSelectionModel().getSelectedItem().getId() + " " + seznamPostav.getSelectionModel().getSelectedItem()));
 		}
 		else {
 		vypis(hra.zpracujPrikaz(prikazyPostava.getSelectionModel().getSelectedItem() + " " + seznamPostav.getSelectionModel().getSelectedItem()));
@@ -176,7 +178,7 @@ public class Controller extends GridPane implements Observer {
 	 * @param	arg0 akce kliknutí na list předmětů
 	 */
 	@FXML public void klikPredmety(MouseEvent arg0) {
-		vypis(hra.zpracujPrikaz(prikazyPredmety.getSelectionModel().getSelectedItem() + " " + seznamPredmetu.getSelectionModel().getSelectedItem()));
+		vypis(hra.zpracujPrikaz(prikazyPredmety.getSelectionModel().getSelectedItem() + " " + seznamPredmetu.getSelectionModel().getSelectedItem().getId()));
 		konecHry();
 	}
 	
@@ -197,7 +199,6 @@ public class Controller extends GridPane implements Observer {
 	 */
 	@FXML public void klikNovaHra(ActionEvent arg0) {
         vypis("");
-		hra.vratEpilog();
 		hadej.setDisable(false);
 		textVstup.setDisable(false);
 		odesli.setDisable(false);
@@ -213,10 +214,33 @@ public class Controller extends GridPane implements Observer {
 		prikazyPostava.setDisable(false);
 		seznamBytosti.setDisable(false);
 		konec.setDisable(false);
-		IHra hra = new Hra();
-		inicializuj(hra);
+		hra = new Hra();
+
+		textVystup.appendText(hra.vratUvitani());
+		plan = hra.getHerniPlan();
+		dataMistnosti = new SeznamMistnosti(plan);
+		seznamMistnosti.setItems(dataMistnosti.getMistnosti());
+		prikazyMistnost.getSelectionModel().selectFirst();
+		
+		dataPredmetu = new VypisPredmetu(plan);
+		seznamPredmetu.setItems(dataPredmetu.getPredmety());
+		prikazyPredmety.getSelectionModel().selectFirst();
+		
+		dataInventar = new VypisInventare(plan);
+		seznamInventare.setItems(dataInventar.getPredmety());
+		prikazyInventar.getSelectionModel().selectFirst();
+
+		dataBytosti = new VypisBytosti(plan);
+		seznamBytosti.setItems(dataBytosti.getBytosti());
+		
+		dataPostava = new VypisPostava(plan);
+		seznamPostav.setItems(dataPostava.getPostavy());
+		prikazyPostava.getSelectionModel().selectFirst();
+		
 		hrac.setLayoutX(82.00);
         hrac.setLayoutY(308.00);
+        
+        plan.pridejPosluchace(this);
 	}
 	
 	/**
@@ -228,7 +252,7 @@ public class Controller extends GridPane implements Observer {
 		if (prikazyPostava.getSelectionModel().getSelectedItem().equals("dej")) {
 		}
 		else {
-			vypis(hra.zpracujPrikaz(prikazyInventar.getSelectionModel().getSelectedItem() + " " + seznamInventare.getSelectionModel().getSelectedItem()));
+			vypis(hra.zpracujPrikaz(prikazyInventar.getSelectionModel().getSelectedItem() + " " + seznamInventare.getSelectionModel().getSelectedItem().getId()));
 		}
 		konecHry();
 	}

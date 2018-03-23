@@ -44,10 +44,10 @@ public class PrikazVezmiTest {
      */
     @Test
     public  void testLzeSebrat() {      
-        Predmet vec1 = new Predmet(VEC1, "", true, true);
-        Predmet vec2 = new Predmet(VEC2, "", true, false);
-        Predmet vec3 = new Predmet(VEC3, "", false, true);
-        Predmet vec4 = new Predmet(VEC4, "", false, false);
+        Predmet vec1 = new Predmet(VEC1, "", true, true,"neni potřeba");
+        Predmet vec2 = new Predmet(VEC2, "", true, false,"neni potřeba");
+        Predmet vec3 = new Predmet(VEC3, "", false, true,"neni potřeba");
+        Predmet vec4 = new Predmet(VEC4, "", false, false,"neni potřeba");
         
         Bytost bytost1 = new Bytost ("bytost1", "", true);
         Bytost bytost2 = new Bytost ("bytost2", "", false);
@@ -101,11 +101,11 @@ public class PrikazVezmiTest {
      */
     @Test
     public  void testLzeSebratOmezenyPocet() {      
-        Predmet vec1 = new Predmet(VEC1, "", true, true);
-        Predmet vec2 = new Predmet(VEC2, "", true, true);
-        Predmet vec3 = new Predmet(VEC3, "", true, true);
-        Predmet vec4 = new Predmet(VEC4, "", true, true);
-        Predmet vec5 = new Predmet(VEC5, "", true, true);
+        Predmet vec1 = new Predmet(VEC1, "", true, true,"neni potřeba");
+        Predmet vec2 = new Predmet(VEC2, "", true, true,"neni potřeba");
+        Predmet vec3 = new Predmet(VEC3, "", true, true,"neni potřeba");
+        Predmet vec4 = new Predmet(VEC4, "", true, true,"neni potřeba");
+        Predmet vec5 = new Predmet(VEC5, "", true, true,"neni potřeba");
       
         Lokace lokace1 = new Lokace("lokace1","",true, 247.00, 308.00);
         

@@ -23,6 +23,7 @@ public class Predmet implements Observable{
     private String textPouzijPoprve;
     private String textPouzijOpakovane;
     private List<Observer> posluchaci;
+    private String obr;
     
     /**
      * Konstruktor pro vytvoření jednotlivých předmětů.
@@ -31,13 +32,15 @@ public class Predmet implements Observable{
      * @param   popis   popis předmětu
      * @param   prenositelny    informace zda předmět jde přenést
      * @param   viditelny   informace o viditelnosti předmětu
+     * @param  	obr   URI obrázku
      */
-    public Predmet(String nazev, String popis, boolean prenositelny, boolean viditelny) {
+    public Predmet(String nazev, String popis, boolean prenositelny, boolean viditelny, String obr) {
         this.nazev = nazev;
         this.popis = popis;
         this.prenositelny = prenositelny;
         this.viditelny = viditelny;
         posluchaci = new ArrayList<Observer>();
+        this.obr = obr;
     }
     
     /**
@@ -51,8 +54,9 @@ public class Predmet implements Observable{
      * @param   coZiskam    co získám, když použiju předmět
      * @param   textPouzijPoprve    text který se vypíše, když poprvé použiju předmět
      * @param   textPouzijOpakovane text který se vypíše, když opakovaně použiju předmět
+     * @param  	obr   URI obrázku
      */
-    public Predmet(String nazev, String popis, boolean prenositelny, boolean viditelny, String kdeLzePouzit, String coZiskam, String textPouzijPoprve, String textPouzijOpakovane) {
+    public Predmet(String nazev, String popis, boolean prenositelny, boolean viditelny, String kdeLzePouzit, String coZiskam, String textPouzijPoprve, String textPouzijOpakovane, String obr) {
         this.nazev = nazev;
         this.popis = popis;
         this.prenositelny = prenositelny;
@@ -62,6 +66,7 @@ public class Predmet implements Observable{
         this.textPouzijPoprve = textPouzijPoprve;
         this.textPouzijOpakovane = textPouzijOpakovane;
         posluchaci = new ArrayList<Observer>();
+        this.obr = obr;
     }
     
     /**
@@ -75,8 +80,9 @@ public class Predmet implements Observable{
      * @param   textPouzijPoprve    text který se vypíše, když poprvé použiju předmět
      * @param   textPouzijOpakovane text který se vypíše, když opakovaně použiju předmět
      * @param   zamcena informace zda předmět je zamčený
+     * @param  	obr   URI obrázku
      */
-    public Predmet(String nazev, String popis, boolean prenositelny, String kdeLzePouzit, String coZiskam, String textPouzijPoprve, String textPouzijOpakovane, boolean zamcena) {
+    public Predmet(String nazev, String popis, boolean prenositelny, String kdeLzePouzit, String coZiskam, String textPouzijPoprve, String textPouzijOpakovane, boolean zamcena, String obr) {
         this.nazev = nazev;
         this.popis = popis;
         this.prenositelny = prenositelny;
@@ -86,6 +92,7 @@ public class Predmet implements Observable{
         this.zamcena = zamcena;
         this.kdeLzePouzit = kdeLzePouzit;
         posluchaci = new ArrayList<Observer>();
+        this.obr = obr;
     }
     
     /**
@@ -290,5 +297,14 @@ public class Predmet implements Observable{
 		for(Observer observer: posluchaci) {
 			observer.uprav();
 		}
+	}
+	
+	/**
+     * Getter pro získání URI obrazku.
+     * 
+     * @return  URI obrázku
+     */
+	public String getObr() {
+		return obr;
 	}
 }
