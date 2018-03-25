@@ -68,7 +68,7 @@ public class Controller extends GridPane implements Observer {
 	 * @param	arg0 akce kliknutí na prvek menu
 	 */
 	@FXML public void klikniNapoveda(ActionEvent event){
-	napoveda = this.getClass().getResource("napoveda.html");
+	napoveda = this.getClass().getResource("/ui/napoveda.html");
 	WebView webView = new WebView();
 	WebEngine engine = webView.getEngine();
 	engine.load(napoveda.toString());
@@ -178,8 +178,13 @@ public class Controller extends GridPane implements Observer {
 	 * @param	arg0 akce kliknutí na list předmětů
 	 */
 	@FXML public void klikPredmety(MouseEvent arg0) {
+		if(seznamPredmetu.getSelectionModel().getSelectedItem() == null) {
+		}
+		else
+		{
 		vypis(hra.zpracujPrikaz(prikazyPredmety.getSelectionModel().getSelectedItem() + " " + seznamPredmetu.getSelectionModel().getSelectedItem().getId()));
 		konecHry();
+		}
 	}
 	
 	/**
@@ -252,7 +257,12 @@ public class Controller extends GridPane implements Observer {
 		if (prikazyPostava.getSelectionModel().getSelectedItem().equals("dej")) {
 		}
 		else {
+			if(seznamInventare.getSelectionModel().getSelectedItem() == null) {
+			}
+			else
+			{
 			vypis(hra.zpracujPrikaz(prikazyInventar.getSelectionModel().getSelectedItem() + " " + seznamInventare.getSelectionModel().getSelectedItem().getId()));
+			}
 		}
 		konecHry();
 	}
