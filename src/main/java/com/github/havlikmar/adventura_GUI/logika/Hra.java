@@ -41,7 +41,7 @@ public class Hra implements IHra {
      */
     public String vratUvitani() {
         return "Vítejte!\n" +
-               "Toto je příběh o zlatokopovi, hledající poklad,\n" +
+               "Toto je příběh o zlatokopovy, hledající poklad,\n" +
                "vaším úkolem je tento poklad najít. Traduje se že poklad má\n" +
                "tajemný jezdec, který žije v chaloupce.\n" +
                "Napište 'nápověda', pokud si nevíte rady, jak hrát dál.\n" +
